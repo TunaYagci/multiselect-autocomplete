@@ -1,0 +1,55 @@
+{
+  "name": "multiselect-autocomplete",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint",
+    "build-bundle": "vue-cli-service build --target lib --name multiselect-autocomplete ./src/components/MultiSelectAutoComplete.vue",
+    "test": "vue-cli-service test",
+    "e2e": "vue-cli-service e2e",
+    "e2e:open": "vue-cli-service e2e:open"
+  },
+  "main": "./dist/multiselect-autocomplete.common.js",
+  "files": [
+    "dist/*",
+    "src/components/MultiSelectAutoComplete.vue"
+  ],
+  "dependencies": {
+    "debounce": "^1.1.0",
+    "lodash.differencewith": "^4.5.0",
+    "vue": "^2.5.16"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.0.0-rc.5",
+    "@vue/cli-plugin-eslint": "^3.0.0-rc.5",
+    "@vue/cli-service": "^3.0.0-rc.5",
+    "vue-resource": "^1.5.1",
+    "vue-template-compiler": "^2.5.16"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ],
+    "rules": {},
+    "parserOptions": {
+      "parser": "babel-eslint"
+    }
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
+}
