@@ -5,7 +5,7 @@
         </slot>
         <input :class="inputClasses"
                type="text"
-               placeholder="Type to search..."
+               :placeholder="placeholder"
                :id="mergeStringWithUUID('multi-select-auto-complete-input')"
                autocomplete="off"
                :value="inputValue"
@@ -39,14 +39,17 @@
                 <hr v-if="showHorizontalLine" class="separator">
             </slot>
 
-            <li v-for="(suggestion, index) in suggestions"
+            <li v-for="(suggestion, index) in suggestionsFiltered"
                 :key="suggestion.id"
                 class="auto-complete"
                 :class="bindClass(index,suggestion, selectionArray.length)"
                 @click="suggestionClick(index)">
                 <slot name="suggestion" :slot-scope="suggestion">
-                    <a>
-                        <small>{{ suggestion.visibleName }}</small>
+                    <a v-if="suggestion[noResultKey]">
+                        <small>{{suggestion.visibleName}}</small>
+                    </a>
+                    <a v-else>
+                        <small>{{suggestion.visibleName}}</small>
                     </a>
                 </slot>
             </li>
@@ -55,6 +58,7 @@
 </template>
 
 <script>
+    import differenceWith from 'lodash.differencewith';
 
     export default {
 
@@ -62,10 +66,6 @@
         props: {
             suggestions: {
                 type: Array,
-                required: true
-            },
-            inputValue: {
-                type: String,
                 required: true
             },
             selectionArray: {
@@ -91,29 +91,53 @@
                 type: Array,
                 required: false,
                 default: () => []
+            },
+            joiner: {
+                type: Function,
+                default: null
+            },
+            saveSearchOnFocusOut: {
+                type: Boolean,
+                default: false
+            },
+            placeholder: {
+                type: String,
+                default: 'Type to search...'
+            },
+            noResultKey: {
+                type: String,
+                default: null
             }
         },
         data() {
             return {
                 open: false,
-                current: 0
+                current: 0,
+                inputText: ''
             }
         },
         computed: {
             getWrapperClasses() {
-                return [...this.wrapperClasses, this.openSuggestion ? 'open' : ''];
-            },
-            openSuggestion() {
-                return (this.input !== '' || this.selectionArray.length !== 0) && this.open === true;
+                return [...this.wrapperClasses, this.open ? 'open' : ''];
             },
             showHorizontalLine() {
-                return this.suggestions.length > 0 && this.selectionArray.length > 0;
+                return this.suggestionsFiltered.length > 0 && this.selectionArray.length > 0;
             },
             showSuggestions() {
-                return this.selectionArray.length > 0 || this.suggestions.length > 0;
+                return this.selectionArray.length > 0 || this.suggestionsFiltered.length > 0;
             },
             getInstance() {
                 return this;
+            },
+            inputValue() {
+                return this.open ? this.inputText : this.joiner ? this.joiner(this.selectionArray) : this.selectionArray.map(f => f.visibleName).join(', ');
+            },
+            suggestionsFiltered() {
+                if (this.selectionArray.length > 0) {
+                    return differenceWith(this.suggestions, this.selectionArray, (o1, o2) => o1.id === o2.id);
+                } else {
+                    return this.suggestions;
+                }
             }
         },
         methods: {
@@ -122,6 +146,10 @@
                     return;
                 }
                 this.open = false;
+                if (!this.saveSearchOnFocusOut) {
+                    this.inputText = '';
+                    this.$emit('onSearchParamChanged', '');
+                }
                 this.$emit("onFocusOut");
                 this.current = 0;
             },
@@ -135,13 +163,14 @@
                     this.open = true;
                     this.current = 0;
                 }
+                this.inputText = value;
                 this.$emit('onSearchParamChanged', value);
             },
-            isIndexNoMatchSuggestion(index) {
-                return this.suggestions[index].id === -1;
+            isIndexNoResultSuggestion(index) {
+                return this.suggestionsFiltered[index][this.noResultKey];
             },
             isIndexExistsOnSuggestions(index) {
-                return this.suggestions[index] && this.suggestions[index].id;
+                return this.suggestionsFiltered[index] && this.suggestionsFiltered[index].id;
             },
             enter(event) {
                 // understand if we are unselecting or selecting
@@ -157,7 +186,7 @@
                 this.current > 0 && this.current--;
             },
             down() {
-                (this.current < (this.selectionArray.length + this.suggestions.length) - 1) && this.current++;
+                (this.current < (this.selectionArray.length + this.suggestionsFiltered.length) - 1) && this.current++;
             },
             bindClass(index, suggestion, startFrom) {
                 index += startFrom;
@@ -172,8 +201,8 @@
             },
             suggestionClick(index) {
                 if (this.isIndexExistsOnSuggestions(index)) {
-                    if (!this.isIndexNoMatchSuggestion(index)) {
-                        this.$emit('onSelected', this.suggestions[index]);
+                    if (!this.isIndexNoResultSuggestion(index)) {
+                        this.$emit('onSelected', this.suggestionsFiltered[index]);
                     }
                 }
             },
