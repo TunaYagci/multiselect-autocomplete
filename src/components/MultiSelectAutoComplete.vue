@@ -1,10 +1,9 @@
 <template>
-    <div style="position:relative"
-         :class="{'open':openSuggestion}">
+    <div :class="getWrapperClasses">
         <slot name="loading-icon">
             <i v-if="isLoading" class="fas fa-sync fa-spin auto-complete-spinner"></i>
         </slot>
-        <input class="form-control"
+        <input :class="inputClasses"
                type="text"
                placeholder="Type to search..."
                :id="mergeStringWithUUID('multi-select-auto-complete-input')"
@@ -16,7 +15,7 @@
                @keydown.up='up'
                @focus="onFocusIn"
                @blur="onFocusOut">
-        <ul class="auto-complete dropdown-menu un-focus col-md-12"
+        <ul class="auto-complete dropdown-menu un-focus"
             @blur="onFocusOut"
             :id="mergeStringWithUUID('multi-select-dropdown-menu')"
             tabindex="-1"
@@ -71,6 +70,16 @@
                 type: Boolean,
                 required: false,
                 default: false
+            },
+            inputClasses: {
+                type: Array,
+                required: false,
+                default: () => ['form-control']
+            },
+            wrapperClasses: {
+                type: Array,
+                required: false,
+                default: () => ['wrapper']
             }
         },
         data() {
@@ -80,6 +89,9 @@
             }
         },
         computed: {
+            getWrapperClasses() {
+                return [...this.wrapperClasses, this.openSuggestion ? 'open' : ''];
+            },
             openSuggestion() {
                 return (this.input !== '' || this.selectionArray.length !== 0) && this.open === true;
             },
@@ -204,5 +216,9 @@
         pointer-events: none;
         opacity: 0.6;
         cursor: no-drop;
+    }
+
+    .wrapper {
+        position: relative;
     }
 </style>
