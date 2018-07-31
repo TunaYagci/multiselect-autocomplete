@@ -15,7 +15,7 @@
                @keydown.up='up'
                @focus="onFocusIn"
                @blur="onFocusOut">
-        <ul class="auto-complete dropdown-menu un-focus"
+        <ul class="auto-complete dropdown-menu un-focus" :class="listClasses"
             @blur="onFocusOut"
             :id="mergeStringWithUUID('multi-select-dropdown-menu')"
             tabindex="-1"
@@ -27,22 +27,28 @@
                 :key="aSelection.id"
                 :class="bindClass(index, aSelection, 0)"
                 @click="selectedSuggestionClick(index)">
-                <a>
-                    <i class="fas fa-check" style="margin-right: 5px;"></i>
-                    <small>{{ aSelection.visibleName }}</small>
-                </a>
+                <slot name="selected" :slot-scope="aSelection">
+                    <a>
+                        <i class="fas fa-check" style="margin-right: 5px;"></i>
+                        <small>{{ aSelection.visibleName }}</small>
+                    </a>
+                </slot>
             </li>
 
-            <hr v-if="showHorizontalLine" class="separator">
+            <slot name="separator" :slot-scope="showHorizontalLine">
+                <hr v-if="showHorizontalLine" class="separator">
+            </slot>
 
             <li v-for="(suggestion, index) in suggestions"
                 :key="suggestion.id"
                 class="auto-complete"
                 :class="bindClass(index,suggestion, selectionArray.length)"
                 @click="suggestionClick(index)">
-                <a>
-                    <small>{{ suggestion.visibleName }}</small>
-                </a>
+                <slot name="suggestion" :slot-scope="suggestion">
+                    <a>
+                        <small>{{ suggestion.visibleName }}</small>
+                    </a>
+                </slot>
             </li>
         </ul>
     </div>
@@ -80,6 +86,11 @@
                 type: Array,
                 required: false,
                 default: () => ['wrapper']
+            },
+            listClasses: {
+                type: Array,
+                required: false,
+                default: () => []
             }
         },
         data() {
