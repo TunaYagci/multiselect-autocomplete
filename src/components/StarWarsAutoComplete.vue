@@ -40,7 +40,9 @@
         },
         created() {
             const c3po = 'C-3PO';
+            const r2d2 = 'R2-D2';
             this.selectedEntities.push({id: c3po, visibleName: c3po});
+            this.selectedEntities.push({id: r2d2, visibleName: r2d2});
         },
         methods: {
             onSelected(selection) {

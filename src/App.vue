@@ -1,10 +1,10 @@
 <template>
     <div id="app">
         <div class="row">
-            <div class="col-md-3 center">
-                <img class="img-responsive gif col-md-2"
+            <div class="col-md-12 center">
+                <img class="img-responsive gif-smaller"
                      src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Vue.js_Logo.svg/400px-Vue.js_Logo.svg.png">
-                <h2 class="col-md-10">multiselect-autocomplete</h2>
+                <!--<h2 class="col-md-4">multiselect-autocomplete</h2>-->
             </div>
         </div>
         <div class="row">
@@ -47,7 +47,12 @@
     }
 
     .gif {
-        margin: 0 auto 20px;
+        margin: 0 auto 30px;
         max-width: 20% !important;
+    }
+
+    .gif-smaller {
+        margin: 0 auto 20px;
+        max-width: 5% !important;
     }
 </style>
