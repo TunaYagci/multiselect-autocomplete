@@ -38,6 +38,10 @@
                 return this;
             }
         },
+        created() {
+            const c3po = 'C-3PO';
+            this.selectedEntities.push({id: c3po, visibleName: c3po});
+        },
         methods: {
             onSelected(selection) {
                 if (!this.selectedEntities.find(f => f.id === selection.id)) {
