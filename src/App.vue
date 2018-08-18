@@ -4,7 +4,6 @@
             <div class="col-md-12 center">
                 <img class="img-responsive gif-smaller"
                      src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Vue.js_Logo.svg/400px-Vue.js_Logo.svg.png">
-                <!--<h2 class="col-md-4">multiselect-autocomplete</h2>-->
             </div>
         </div>
         <div class="row">
@@ -22,10 +21,12 @@
 
 <script>
     import StarWarsAutoComplete from "./components/StarWarsAutoComplete.vue";
+    import Docs from "./components/Docs.vue";
 
     export default {
         name: 'app',
         components: {
+            Docs,
             StarWarsAutoComplete
         }
     }
@@ -54,5 +55,10 @@
     .gif-smaller {
         margin: 0 auto 20px;
         max-width: 5% !important;
+    }
+
+    .docs {
+        padding: 50px;
+        background-color: rgba(43, 59, 67, 0.05);
     }
 </style>

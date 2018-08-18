@@ -61,52 +61,68 @@
     import differenceWith from 'lodash.differencewith';
 
     export default {
-
         name: "multi-select-auto-complete",
+        introduction: 'An auto-complete with multi-select enabled',
+        description: `This docs is made with \`propdoc\``,
+        token: `<multi-select-auto-complete :suggestions="suggestions" :selectionArray="selectedEntities"/>`,
         props: {
             suggestions: {
                 type: Array,
-                required: true
+                required: true,
+                note: 'Array of suggestions (data fetched from backend, etc)'
             },
             selectionArray: {
                 type: Array,
-                required: true
+                required: true,
+                note: 'Array of the suggestions user has selected'
             },
             isLoading: {
                 type: Boolean,
                 required: false,
-                default: false
+                default: false,
+                note: 'Use to display a loading icon (while fetching from backend, etc)'
             },
             inputClasses: {
                 type: Array,
                 required: false,
-                default: () => ['form-control']
+                default: () => ['form-control'],
+                note: 'CSS classes to be added to <input>'
             },
             wrapperClasses: {
                 type: Array,
                 required: false,
-                default: () => ['wrapper']
+                default: () => ['wrapper'],
+                note: `There is wrapper on top of the component, a <div>.
+                Use this to add CSS classes to that.`
             },
             listClasses: {
                 type: Array,
                 required: false,
-                default: () => []
+                default: () => [],
+                note: `Every suggestion is actually a <li>, so there is a <ul>.
+                Use this to add CSS classes to that.`,
             },
             joiner: {
                 type: Function,
-                default: null
+                default: null,
+                note: `How do you want to display your selected suggestions? Use this function for that.
+                It takes your selectionArray as a parameter. Invoked as: joiner(selectionArray)`
             },
             saveSearchOnFocusOut: {
                 type: Boolean,
-                default: false
+                default: false,
+                note: 'dont use this yet (experimental)'
             },
             placeholder: {
                 type: String,
-                default: 'Type to search...'
+                default: 'Type to search...',
+                note: 'Your placeholder on the input'
             },
             noResultKey: {
                 type: String,
-                default: null
+                default: null,
+                note: 'If suggestions array has that key, this means you couldn\'t find any data,' +
+                    `so you put this field into your data.`
             }
         },
         data() {
