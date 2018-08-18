@@ -1,5 +1,5 @@
 <template>
-    <section>
+    <section class="docs">
         <prop-doc :component="multiSelectAutoComplete">
             <template slot="pre-props">
                 <h2>Events</h2>
@@ -22,7 +22,7 @@
 </template>
 <script>
     import propDoc from 'propdoc';
-    import MultiSelectAutoComplete from "./MultiSelectAutoComplete";
+    import MultiSelectAutoComplete from "../components/MultiSelectAutoComplete";
 
     export default {
         name: 'documentation',
@@ -35,9 +35,21 @@
         computed: {
             events() {
                 return [
-                    {name: '@onSearchParamChanged', params: 'searchedParameter (string)', notes: 'invoked every time user inputs'},
-                    {name: '@onSelected', params: 'object with index n of suggestions prop (object)', notes: 'invoked when user selects a suggestion'},
-                    {name: '@onSelectedSelectionDelete', params: 'index of deleted row from suggestions prop', notes: 'invoked when user de-selects a suggestion'},
+                    {
+                        name: '@onSearchParamChanged',
+                        params: 'searchedParameter (string)',
+                        notes: 'invoked every time user inputs'
+                    },
+                    {
+                        name: '@onSelected',
+                        params: 'object with index n of suggestions prop (object)',
+                        notes: 'invoked when user selects a suggestion'
+                    },
+                    {
+                        name: '@onSelectedSelectionDelete',
+                        params: 'index of deleted row from suggestions prop',
+                        notes: 'invoked when user de-selects a suggestion'
+                    },
                     {name: '@onFocusOut', params: '', notes: 'invoked when list lost its focus'},
                     {name: '@onFocusIn', params: '', notes: 'invoked when list gained its focus'},
                 ];
@@ -45,6 +57,13 @@
         }
     }
 </script>
+
+<style>
+    .docs {
+        padding: 50px;
+        background-color: rgba(43, 59, 67, 0.05);
+    }
+</style>
 
 
 <style lang="scss">

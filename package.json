@@ -4,21 +4,18 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
-    "build-bundle": "vue-cli-service build --target lib --name multiselect-autocomplete ./src/components/MultiSelectAutoComplete.vue",
     "test": "vue-cli-service test",
     "e2e": "vue-cli-service e2e",
+    "lint": "vue-cli-service lint",
+    "build-bundle": "vue-cli-service build --target lib --name multiselect-autocomplete ./src/components/MultiSelectAutoComplete.vue",
     "e2e:open": "vue-cli-service e2e:open"
   },
-  "main": "./dist/multiselect-autocomplete.common.js",
-  "files": [
-    "dist/*",
-    "src/components/MultiSelectAutoComplete.vue"
-  ],
   "dependencies": {
+    "bootstrap": "^3.3.7",
     "lodash.differencewith": "^4.5.0",
     "npm": "^6.2.0",
-    "vue": "^2.5.16"
+    "vue": "^2.5.16",
+    "vue-router": "^3.0.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.0.0-rc.10",
@@ -54,5 +51,10 @@
     "> 1%",
     "last 2 versions",
     "not ie <= 8"
+  ],
+  "main": "./dist/multiselect-autocomplete.common.js",
+  "files": [
+    "dist/*",
+    "src/components/MultiSelectAutoComplete.vue"
   ]
 }

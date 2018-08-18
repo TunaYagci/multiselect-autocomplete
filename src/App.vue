@@ -1,64 +1,20 @@
 <template>
-    <div id="app">
-        <div class="row">
-            <div class="col-md-12 center">
-                <img class="img-responsive gif-smaller"
-                     src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Vue.js_Logo.svg/400px-Vue.js_Logo.svg.png">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12 center">
-                <img class="img-responsive gif"
-                     src="https://media1.tenor.com/images/11f2112c37b0365d51f116af63ccedec/tenor.gif?itemid=9827846"
-                     alt="c3po">
-                <div class="col-md-3 center">
-                    <star-wars-auto-complete/>
-                </div>
-            </div>
-        </div>
+  <div id="app">
+    <div id="nav">
+      <router-link to="/">Home</router-link> |
+      <router-link to="/docs">Docs</router-link>
     </div>
+    <router-view/>
+  </div>
 </template>
 
-<script>
-    import StarWarsAutoComplete from "./components/StarWarsAutoComplete.vue";
-    import Docs from "./components/Docs.vue";
-
-    export default {
-        name: 'app',
-        components: {
-            Docs,
-            StarWarsAutoComplete
-        }
-    }
-</script>
-
 <style>
-    #app {
+  #app {
         font-family: 'Avenir', Helvetica, Arial, sans-serif;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         text-align: center;
         color: #2c3e50;
         margin-top: 60px;
-    }
-
-    .center {
-        margin: 0 auto;
-        float: none;
-    }
-
-    .gif {
-        margin: 0 auto 30px;
-        max-width: 20% !important;
-    }
-
-    .gif-smaller {
-        margin: 0 auto 20px;
-        max-width: 5% !important;
-    }
-
-    .docs {
-        padding: 50px;
-        background-color: rgba(43, 59, 67, 0.05);
     }
 </style>
