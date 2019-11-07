@@ -8,7 +8,7 @@
 `npm i multiselect-autocomplete`
 
 ## Docs: 
-`https://tunayagci.github.io/multiselect-autocomplete`
+https://tunayagci.github.io/multiselect-autocomplete
 
 ## Example:    
 
