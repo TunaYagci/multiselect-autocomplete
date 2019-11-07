@@ -22,6 +22,7 @@
 
 <script>
     import StarWarsAutoComplete from "../components/StarWarsAutoComplete";
+    import 'bootstrap/dist/css/bootstrap.min.css'
 
     export default {
         name: 'home',

@@ -59,6 +59,7 @@
 
 <script>
     import differenceWith from 'lodash.differencewith';
+    import 'bootstrap/dist/css/bootstrap.min.css'
 
     export default {
         name: "multi-select-auto-complete",
