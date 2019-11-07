@@ -4,11 +4,13 @@
 
 ![](/public/autocomplete-3.gif)
 
-Install: `npm i multiselect-autocomplete`
+## Install:  
+`npm i multiselect-autocomplete`
 
-Docs: https://tunayagci.github.io/multiselect-autocomplete
+## Docs: 
+`https://tunayagci.github.io/multiselect-autocomplete`
 
-Example:    
+## Example:    
 
 ```vue
 <!--StarWarsAutoComplete.vue-->
