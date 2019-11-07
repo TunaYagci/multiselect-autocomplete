@@ -8,9 +8,11 @@
 `npm i multiselect-autocomplete`
 
 ## Docs: 
-https://tunayagci.github.io/multiselect-autocomplete
+https://tunayagci.github.io/multiselect-autocomplete/#/docs
 
 ## Example:    
+
+https://tunayagci.github.io/multiselect-autocomplete
 
 ```vue
 <!--StarWarsAutoComplete.vue-->
