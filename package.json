@@ -1,6 +1,6 @@
 {
   "name": "multiselect-autocomplete",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
@@ -58,12 +58,12 @@
     "src/components/MultiSelectAutoComplete.vue"
   ],
   "keywords": [
-    "auto complete",
-    "auto-complete",
-    "autocomplete",
-    "multi autocomplete",
-    "multiple autocomplete",
-    "multi-autocomplete",
-    "multiple-autocomplete"
+    "vue auto complete",
+    "vue auto-complete",
+    "vue autocomplete",
+    "vue multi autocomplete",
+    "vue multiple autocomplete",
+    "vue multi-autocomplete",
+    "vue multiple-autocomplete"
   ]
 }
