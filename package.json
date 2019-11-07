@@ -1,7 +1,7 @@
 {
   "name": "multiselect-autocomplete",
   "author": "Tuna Yagci (https://www.linkedin.com/in/tuna-ya%C4%9Fc%C4%B1-848b6183)",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "description": "An autocomplete library which supports multiple selection.",
   "scripts": {
     "serve": "vue-cli-service serve",
