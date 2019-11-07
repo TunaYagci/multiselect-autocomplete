@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-md-12 center">
                 <img class="img-responsive gif-smaller"
-                     src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Vue.js_Logo.svg/400px-Vue.js_Logo.svg.png">
+                     src="https://vuejs.org/images/logo.png">
             </div>
         </div>
         <div class="row">
