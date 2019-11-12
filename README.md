@@ -5,7 +5,11 @@
 ![](/public/autocomplete-3.gif)
 
 ## Install:  
-`npm i multiselect-autocomplete`
+* `npm i multiselect-autocomplete`
+* Add `fontawesome` to your index.html for **loading icon**, like:
+```html
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+```
 
 ## Docs: 
 https://tunayagci.github.io/multiselect-autocomplete/#/docs
